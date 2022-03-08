@@ -13,7 +13,7 @@ func TestSigning(t *testing.T) {
 	}
 	//println(EncodePrivateKey(priv))
 	signer := NewJwtEncoder(EncodePrivateKey(priv), jwt.SigningMethodRS256)
-	token, err := signer.SignToken("fasdf", "fsda")
+	token, err := signer.SignToken("fasdf", "fsda", false)
 	if err != nil {
 		print(err.Error())
 	}

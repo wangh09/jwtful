@@ -1,4 +1,4 @@
-module jwtful
+module github.com/wangh09/jwtful
 
 go 1.13
 
