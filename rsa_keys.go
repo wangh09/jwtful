@@ -7,23 +7,26 @@ import (
 	"encoding/pem"
 )
 
-func GenerateKey(bits int) (*rsa.PrivateKey, *rsa.PublicKey, error) {
+func GenerateKey(bits int) ([]byte, []byte, error) {
 	private, err := rsa.GenerateKey(rand.Reader, bits)
 	if err != nil {
 		return nil, nil, err
 	}
-	return private, &private.PublicKey, nil
-
+	pub, err := encodePublicKey(&private.PublicKey)
+	if err != nil {
+		return nil, nil, err
+	}
+	return encodePrivateKey(private), pub, nil
 }
 
-func EncodePrivateKey(private *rsa.PrivateKey) []byte {
+func encodePrivateKey(private *rsa.PrivateKey) []byte {
 	return pem.EncodeToMemory(&pem.Block{
 		Bytes: x509.MarshalPKCS1PrivateKey(private),
 		Type:  "RSA PRIVATE KEY",
 	})
 }
 
-func EncodePublicKey(public *rsa.PublicKey) ([]byte, error) {
+func encodePublicKey(public *rsa.PublicKey) ([]byte, error) {
 	publicBytes, err := x509.MarshalPKIXPublicKey(public)
 	if err != nil {
 		return nil, err

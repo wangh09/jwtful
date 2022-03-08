@@ -12,7 +12,8 @@ func TestSigning(t *testing.T) {
 		t.Fatal()
 	}
 	//println(EncodePrivateKey(priv))
-	signer := NewJwtEncoder(EncodePrivateKey(priv), jwt.SigningMethodRS256)
+	signer := NewJwtEncoder(priv, jwt.SigningMethodRS256)
+	signer.SetTokenExpTime(10, 10)
 	token, err := signer.SignToken("fasdf", "fsda", false)
 	if err != nil {
 		print(err.Error())

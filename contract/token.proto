@@ -1,5 +1,5 @@
 syntax="proto3";
-package authenticator;
+package jwtful;
 message TokenInfo {
   string info = 1;
   int64 expires_at = 2;
