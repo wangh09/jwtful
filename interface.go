@@ -1,4 +1,4 @@
-package authenticator
+package jwtful
 
 import (
 	"encoding/base64"

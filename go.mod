@@ -1,4 +1,4 @@
-module authenticator
+module jwtful
 
 go 1.13
 

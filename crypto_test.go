@@ -1,4 +1,4 @@
-package authenticator
+package jwtful
 
 import (
 	"github.com/dgrijalva/jwt-go"
